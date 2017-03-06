@@ -23,7 +23,7 @@ router.get('/', function(req, res){
     client.query('SELECT * FROM todolist ORDER BY status DESC', function(err, result) {
       done();
       if(err) {
-        //console.log('select query error: ', err);
+        console.log('select query error: ', err);
         res.sendStatus(500);
       }
         res.send(result.rows);
@@ -35,7 +35,7 @@ router.post('/', function(req, res) {
   var newToDo = req.body;
   pg.connect(connectionString, function(err, client, done) {
     if(err) {
-      //console.log('connection error: ', err);
+      console.log('connection error: ', err);
       res.sendStatus(500);
     }
     client.query(
@@ -45,7 +45,7 @@ router.post('/', function(req, res) {
       function(err, result) {
         done();
         if(err) {
-          //console.log('insert query error: ', err);
+          console.log('insert query error: ', err);
           res.sendStatus(500);
         } else {
           res.sendStatus(201);
@@ -59,7 +59,7 @@ router.delete('/:id', function(req, res){
   toDoID = req.params.id;
   pg.connect(connectionString, function(err, client, done){
     if(err){
-      //console.log('connection error: ', err);
+      console.log('connection error: ', err);
       res.sendStatus(500);
     }
     client.query(
