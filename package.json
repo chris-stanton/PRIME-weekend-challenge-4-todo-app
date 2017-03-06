@@ -1,16 +1,17 @@
 {
-  "name": "to-do-app",
+  "name": "weekend-project-4",
   "version": "1.0.0",
-  "description": "Weekend Challenge #4 Hello Primers!",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.17.0",
-    "express": "^4.15.0"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "pg": "^6.1.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node server/app.js"
   },
   "author": "",
   "license": "ISC"
