@@ -6,4 +6,4 @@ status VARCHAR(20) NOT NULL
 
 INSERT INTO todolist (description, status)
 VALUES ('fishing', 'incomplete'),
-('feed dog, 'complete');
+       ('feed dog, 'complete');

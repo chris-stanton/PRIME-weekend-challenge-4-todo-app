@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var pg = require('pg');
+var pg = require('pg');//connects node app to database
+//var pool = new pg.Pool(config);
+
 //found an many examples on Stackoverflow using the line below instead of var config.
 //Stackoverflow used this variable with pg.connect and not pool.connect like we used in class.
 //I had an issue with deleting items from the database until I switched over.
@@ -15,44 +17,44 @@ var connectionString = 'postgres://localhost:5432/phi';
 // };
 
 router.get('/', function(req, res){
-  pg.connect(connectionString, function(err, client, done) {
-    if(err) {
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
       console.log('connection error to database: ', err);
       res.sendStatus(500);
-    }
-    client.query('SELECT * FROM todolist ORDER BY status DESC', function(err, result) {
+    }//end of if(err)
+    client.query('SELECT * FROM todolist ORDER BY status DESC', function(err, result){
       done();
-      if(err) {
+      if(err){
         console.log('select query error: ', err);
         res.sendStatus(500);
-      }
+      }//end of if(err)
         res.send(result.rows);
-    });
-  });
-});
+    });//end of clint.query()
+  });//end of pg.connect
+});//end of router.get()
 
-router.post('/', function(req, res) {
+router.post('/', function(req, res){
   var newToDo = req.body;
-  pg.connect(connectionString, function(err, client, done) {
-    if(err) {
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
       console.log('connection error: ', err);
       res.sendStatus(500);
-    }
+    }//end of if(err)
     client.query(
       'INSERT INTO todolist (description, status) ' +
       'VALUES ($1, $2)',
       [newToDo.description, newToDo.status],
-      function(err, result) {
+      function(err, result){
         done();
-        if(err) {
+        if(err){
           console.log('insert query error: ', err);
           res.sendStatus(500);
         } else {
           res.sendStatus(201);
-        }
-      });
-  });
-});
+        }//end of else
+      });//end of function(err, result)
+  });//end of pg.connect
+});//end of router.post
 
 
 router.delete('/:id', function(req, res){
@@ -61,17 +63,17 @@ router.delete('/:id', function(req, res){
     if(err){
       console.log('connection error: ', err);
       res.sendStatus(500);
-    }
+    }//end of if(err)
     client.query(
       'DELETE FROM todolist WHERE id = $1',
       [toDoID],
-      function(err, result) {
+      function(err, result){
         done();
-        if(err) {
+        if(err){
           res.sendStatus(500);
         } else {
           res.sendStatus(200);
-        }
+        }//end of else
       });//end of client.query
     });//end of pg.connect
 });//end of router.delete

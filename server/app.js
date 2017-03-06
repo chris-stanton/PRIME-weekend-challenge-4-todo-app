@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 var thingsToDo = require('./routes/thingsToDo');
 var port = 5000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.json());//use with Postman App
 
 app.use('/thingsToDo', thingsToDo);
 
