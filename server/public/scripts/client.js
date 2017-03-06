@@ -55,7 +55,7 @@ function postThingToDo(){
       getThingsToDo();
     },//end of success function()
     error: function(){
-      console.log('post broken');
+      console.log('ajax POST error');
     }//end of error function()
   });//end of ajax
 }//end of postThingToDo()
@@ -70,7 +70,7 @@ function deleteThingToDo(){
       getThingsToDo();
     },//end of success function()
     error: function(result){
-      console.log('delete broken');
+      console.log('ajax DELETE error');
     }//end of error function()
   });//end of ajax
 }//end of deleteThingToDo()
