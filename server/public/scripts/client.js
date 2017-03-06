@@ -33,7 +33,7 @@ function appendThingToDo(thingToDo){
     var toDo = thingToDo[i];
     $("#toDoList").append('<div class="' + toDo.status + '" data-id="' + toDo.id + '"></div>');
     $('#toDoList').children().last().append('<h2 id="todoBox"> ' + toDo.description + '</h2>');
-    $('#toDoList').children().last().append('<button class="complete">Complete</button>');
+    $('#toDoList').children().last().append('<button class="complete">Completed</button>');
     $('#toDoList').children().last().append('<button class="delete">Delete</button>');
   }//end of for loop
 }//end of appendThingToDo()
